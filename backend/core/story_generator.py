@@ -16,13 +16,17 @@ class StoryGenerator:
 
     @classmethod
     def _get_llm(cls):
-        openai_api_key = os.getenv("CHOREO_OPENAI_CONNECTION_OPENAI_API_KEY")
-        serviceurl = os.getenv("CHOREO_OPENAI_CONNECTION_SERVICEURL")
+        groq_api_key = os.getenv("GROQ_API_KEY")
 
-        if openai_api_key and serviceurl:
-            return ChatOpenAI(model="gpt-4o-mini", api_key=openai_api_key, base_url=serviceurl)
+        if groq_api_key:
+            return ChatOpenAI(
+                model = "openai/gpt-oss-120b",
+                api_key=groq_api_key,
+                base_url="https://api.groq.com/openai/v1"
+            )
 
-        return ChatOpenAI(model="gpt-4o-mini")
+        openai_api_key = os.getenv("OPENAI_API_KEY")
+        return ChatOpenAI(model="gpt-4o-mini", api_key=openai_api_key)
 
     @classmethod
     def generate_story(cls, db: Session, session_id: str, theme: str = "fantasy")-> Story:
