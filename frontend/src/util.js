@@ -1,1 +1,1 @@
-export const API_BASE_URL = "https://story-generator-gayc02lby-thoyaj-kumars-projects.vercel.app"
+export const API_BASE_URL = "https://story-generator-backend-q5dl.onrender.com/api"
